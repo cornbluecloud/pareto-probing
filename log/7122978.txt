@@ -1,0 +1,24 @@
+Namespace(alpha=0.3, batch_size=2048, checkpoint_path='./checkpoints', data_path='./data/processed/', dropout=0.2, embedding_size=300, eval_batches=100, hidden_size=512, language='english', max_rank=10, model='mlp', nlayers=3, representation='bert', save_path='./checkpoints/dep_label/english/mlp/bert/nl_3-es_300-hs_512-d_0.2000-a_0.3000', seed=20, shuffle_labels=False, task='dep_label', wait_epochs=10, wait_iterations=1000)
+./data/processed/ english ./data/processed/english/%s--%s.pickle.bz2
+Traceback (most recent call last):
+  File "src/h02_learn/random_search.py", line 197, in <module>
+    main()
+  File "src/h02_learn/random_search.py", line 153, in main
+    'onehot', 1, 1)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h02_learn/../h02_learn/dataset/__init__.py", line 83, in get_data_loaders
+    'train', batch_size=batch_size, shuffle=True)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h02_learn/../h02_learn/dataset/__init__.py", line 71, in get_data_loader
+    mode, classes=classes, words=words)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h02_learn/../h02_learn/dataset/base.py", line 24, in __init__
+    self.process(classes, words)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h02_learn/../h02_learn/dataset/base.py", line 35, in process
+    self._process_index(classes, words)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h02_learn/../h02_learn/dataset/base.py", line 38, in _process_index
+    x_raw, y_raw = self.load_data(self.iterate_index)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h02_learn/../h02_learn/dataset/dep_label.py", line 28, in load_data
+    for sentence_ud, sentence_tokens in iterator():
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h02_learn/../h02_learn/dataset/base.py", line 54, in iterate_index
+    data_ud = util.read_data(self.input_name_base % (self.mode, 'ud'))
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h02_learn/../util/util.py", line 30, in read_data
+    with open(filename, "rb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: './data/processed/english/train--ud.pickle.bz2'

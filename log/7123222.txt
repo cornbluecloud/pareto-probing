@@ -1,0 +1,8 @@
+Namespace(alpha=0.3, batch_size=2048, checkpoint_path='./checkpoints', data_path='./data/processed/', dropout=0.2, embedding_size=300, eval_batches=100, hidden_size=512, language='english', max_rank=10, model='linear', nlayers=3, representation='bert', save_path='./checkpoints/dep_label/english/linear/bert/nl_3-es_300-hs_512-d_0.2000-a_0.3000', seed=20, shuffle_labels=False, task='dep_label', wait_epochs=10, wait_iterations=1000)
+hi
+Traceback (most recent call last):
+  File "src/h02_learn/random_search.py", line 199, in <module>
+    main()
+  File "src/h02_learn/random_search.py", line 156, in main
+    print(results_fnamem,util.file_len(results_fname))
+NameError: name 'results_fnamem' is not defined

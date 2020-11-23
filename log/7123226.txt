@@ -1,0 +1,14 @@
+Namespace(alpha=0.3, batch_size=2048, checkpoint_path='./checkpoints', data_path='./data/processed/', dropout=0.2, embedding_size=300, eval_batches=100, hidden_size=512, language='english', max_rank=10, model='linear', nlayers=3, representation='bert', save_path='./checkpoints/dep_label/english/linear/bert/nl_3-es_300-hs_512-d_0.2000-a_0.3000', seed=20, shuffle_labels=False, task='dep_label', wait_epochs=10, wait_iterations=1000)
+hi
+./checkpoints/dep_label/english/linear/bert/all_results.tsv 51
+  0%|          | 0/50 [00:00<?, ?it/s]                                      ['bert', '--hidden-size', '776', '--nlayers', '0', '--dropout', '0.15', '--embedding-size', '768', '--alpha', '0.0', '--max-rank', '1']
+  0%|          | 0/50 [00:00<?, ?it/s]['python', 'src/h02_learn/train.py', '--data-path', './data/processed/', '--task', 'dep_label', '--language', 'english', '--batch-size', '2048', '--representation', 'bert', '--model', 'linear', '--eval-batches', '100', '--wait-epochs', '10', '--checkpoint-path', './checkpoints', '--seed', '20', '--hidden-size', '776', '--nlayers', '0', '--dropout', '0.15', '--embedding-size', '768', '--alpha', '0.0', '--max-rank', '1']
+  0%|          | 0/50 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "src/h02_learn/random_search.py", line 200, in <module>
+    main()
+  File "src/h02_learn/random_search.py", line 184, in main
+    run_experiment(run_count, hyper, hyperparameters, args, results_fname)
+  File "src/h02_learn/random_search.py", line 131, in run_experiment
+    asd
+NameError: name 'asd' is not defined

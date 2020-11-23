@@ -1,0 +1,1 @@
+slurmstepd: error: *** JOB 7123030 ON node118 CANCELLED AT 2020-11-22T01:58:27 ***

@@ -1,0 +1,10 @@
+Namespace(batch_size=8, language='english', output_path='./data/processed/', representation='onehot', ud_path='./data/ud/ud-treebanks-v2.5')
+Loading data processor
+Precessing language english
+Processing file ./data/ud/ud-treebanks-v2.5/UD_English-EWT/en_ewt-ud-train.conllu
+PHASE ONE: reading file and tokenizing
+Processing file ./data/ud/ud-treebanks-v2.5/UD_English-EWT/en_ewt-ud-dev.conllu
+PHASE ONE: reading file and tokenizing
+Processing file ./data/ud/ud-treebanks-v2.5/UD_English-EWT/en_ewt-ud-test.conllu
+PHASE ONE: reading file and tokenizing
+Process finished

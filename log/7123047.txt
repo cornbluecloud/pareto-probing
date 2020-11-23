@@ -1,0 +1,21 @@
+Namespace(batch_size=8, language='czech', output_path='./data/processed/', representation='bert', ud_path='./data/ud/ud-treebanks-v2.5')
+Loading data processor
+Precessing language czech
+Processing file ./data/ud/ud-treebanks-v2.5/UD_Czech-PDT/cs_pdt-ud-train.conllu
+PHASE ONE: reading file and tokenizing
+PHASE TWO: padding, batching, and embedding for bert
+torch.Size([8, 35, 768])
+Traceback (most recent call last):
+  File "src/h01_data/process.py", line 106, in <module>
+    main()
+  File "src/h01_data/process.py", line 102, in main
+    process(language, ud_path, batch_size, output_path, args.representation, args)
+  File "src/h01_data/process.py", line 87, in process
+    processor.process_file(ud_file, output_file, batch_size=batch_size)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h01_data/../h01_data/processor/bert.py", line 31, in process_file
+    all_bert_embeddings = self.embed_bert(all_bert_tokens, all_bert2target_map, batch_size)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h01_data/../h01_data/processor/bert.py", line 80, in embed_bert
+    all_bert_embeddings += self.embed_batch(batch, batch_map)
+  File "/mnt/nfs/scratch1/bgullapalli/pareto-probing/src/h01_data/../h01_data/processor/bert.py", line 95, in embed_batch
+    print(last_hidden_states.size())
+AttributeError: 'list' object has no attribute 'size'
