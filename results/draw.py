@@ -21,10 +21,7 @@ for row in reader:
 	order = len(row)
 	# ref = dict(zip(iter(row), range(order)))
 	ref = {row[i]: i for i in range(order)}
-	# print ref['representation']
 	# ref = {i: row[i] for i in range(order)}
-
-	
 	break
 
 # save the test data in selected rows
