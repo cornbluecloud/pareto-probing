@@ -19,19 +19,16 @@ y_axis = 'test_acc'
 
 for row in reader:
 	order = len(row)
-	# ref = dict(zip(iter(row), range(order)))
 	ref = {row[i]: i for i in range(order)}
-	# ref = {i: row[i] for i in range(order)}
 	break
 
 # save the test data in selected rows
 x, y = [], []
 for row in reader:
-	# print row
+
 	opt = (row[ref['representation']] == representation and row[ref['model']] == model and row[ref['language']] == language)
 	if opt:
-		# print row[ref[x_axis]];
-		if float(row[ref[x_axis]]) > 500:
+		if float(row[ref[x_axis]]) > 500:	# drop the outliers
 			continue
 		x.append(row[ref[x_axis]])
 		y.append(row[ref[y_axis]])
