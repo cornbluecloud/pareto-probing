@@ -58,7 +58,7 @@ def get_hyperparameters_search(n_runs, representation, n_classes):
         embedding_size = onehot_embedding_size
     elif representation == 'fast':
         embedding_size = fast_embedding_size
-    elif representation in ['bert', 'albert', 'roberta']:
+    elif representation in ['bert', 'albert', 'roberta'] or 'bert' in representation:
         embedding_size = bert_embedding_size
     else:
         raise ValueError('Invalid representation %s' % representation)
