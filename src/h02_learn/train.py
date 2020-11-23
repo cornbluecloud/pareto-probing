@@ -52,7 +52,7 @@ def get_args():
     util.config(args.seed)
     print(args)
 
-    if args.representation in ['bert', 'albert', 'roberta']:
+    if args.representation in ['bert', 'albert', 'roberta'] or 'bert' in args.representation:
         args.embedding_size = 768
     elif args.representation == 'fast':
         args.embedding_size = 300
