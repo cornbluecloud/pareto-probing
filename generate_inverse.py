@@ -26,18 +26,13 @@ for subdir, dirs, files in os.walk(rootdir):
 
 
             if torch.norm(w, p = 'nuc') > 230 and torch.norm(w, p = 'nuc') < 250:
-                print(torch.norm(w, p = 'nuc'))
+                print(torch.norm(wb, p = 'nuc'))
+                print(torch.matrix_rank(wb))
+                print(wb.shape)
+                iwb = 1/wb
+                print(torch.norm(iwb, p = 'nuc'))
+                print(torch.matrix_rank(iwb))
 
-                d = w.shape[1]
-                print(d)
-                for r in [0.1, 1, 10]:
-                    for i in range(10):
-
-                        A = generate_A(d, r)
-
-                        Aw = torch.mm(w, A)
-                        print(r, torch.norm(Aw, p = 'nuc'))
-                # A2 = generate_A(wb.shape[1])
                 # Awb = torch.mm(wb, A2)
                 # print(torch.norm(wb, p = 'nuc'))
                 # print(torch.norm(Awb, p = 'nuc'))
