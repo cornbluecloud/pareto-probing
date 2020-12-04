@@ -24,16 +24,31 @@ Install transformers, fastText, and other dependencies on Google Colab:
 
 ### Inversed Bert representations
 
-`generate_inverse.py` 
+Run `generate_inverse.py`, store representations in `inverse_power`. 
 
 ### Bert representations with removed dimensions
 
-`generate_missing_data.py`
+Run `generate_missing_data.py`, store representations in  `reduced_training_data`.
 
-## Train your models
+## Generate reduced training dataset
+
+Store in reduced_training_dataset.
+
+## Train the models
 
 We use the following instructions to train the models, fixing 'pos_tag' task and 'linear' model:
+
+Evaluate the one-hot representations with:
 ```!python -u src/h02_learn/random_search.py --language english --data-path ./data/processed --representation onehot --checkpoint-path ./checkpoints --task pos_tag --model linear```
+
+Inversed Bert representations:
 ```!python -u src/h02_learn/random_search.py --language english --data-path ./data/processed --representation inv_bert --checkpoint-path ./checkpoints_new --task pos_tag --model linear```
+
+Negative Bert representations:
+```!python -u src/h02_learn/random_search.py --language english --data-path ./data/processed --representation negative_bert --checkpoint-path ./checkpoints_new --task pos_tag --model linear```
+
+Dropped representations:
+```!python -u src/h02_learn/random_search.py --language english --data-path ./data/processed --representation d1_bert --checkpoint-path ./checkpoints_new --task pos_tag --model linear```
+
 
 
