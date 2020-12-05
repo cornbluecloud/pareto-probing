@@ -13,4 +13,4 @@ export OPENBLAS_NUM_THREADS=7
 export OMP_NUM_THREADS=7
 
  
-python -W ignore  generate_missing_data.py --percent_to_remove 20 --training_size 20
+python -W ignore  generate_missing_data.py --percent_to_remove 20 --training_size 20 --multiplication_factor 1
