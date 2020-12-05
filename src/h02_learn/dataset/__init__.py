@@ -7,7 +7,7 @@ from .pos_tag import PosTagDataset
 from .dep_label import DepLabelDataset
 from .parse import ParseDataset
 from .shuffle import ShufflePosTagDataset, ShuffleDepLabelDataset, ShuffleParseDataset
-
+from .classify import ClassifyDataset
 
 def batch_generator(task):
     def generate_batch(batch):
@@ -43,6 +43,9 @@ def batch_generator(task):
     if task in ['parse']:
         return pad_batch
 
+    if task in ['classify']:
+        return generate_batch
+
     raise ValueError('Invalid task for batch generation')
 
 
@@ -54,6 +57,8 @@ def get_data_cls(task, shuffle_labels):
             return DepLabelDataset
         if task == 'parse':
             return ParseDataset
+        if task == 'classify':
+            return ClassifyDataset
     else:
         if task == 'pos_tag':
             return ShufflePosTagDataset

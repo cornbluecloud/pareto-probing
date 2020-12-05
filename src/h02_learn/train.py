@@ -56,9 +56,10 @@ def get_args():
         args.embedding_size = 768
     elif args.representation == 'fast':
         args.embedding_size = 300
+    elif args.representation == 'vector':
+        args.embedding_size = 10
     if args.task == 'dep_label':
         args.embedding_size = args.embedding_size * 2
-
     if args.task == 'parse':
         args.batch_size = 128
 
