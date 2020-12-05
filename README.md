@@ -28,8 +28,10 @@ make preprocess
 
 Generate data with specific parameters using `generate_missing_data.py` which removes part of embeddings of bert representetions or reduces the training set size with the command
 ```
-$ make generate_data.sh PERCNET_TO_REMOVE = <percent_to_remove> TRAINING_SIZE = <training_size>
+$ make generate_data.sh PERCNET_TO_REMOVE=<percent_to_remove> TRAINING_SIZE=<training_size>
 ```
+There are a number of "precent_to_remove" we tried: [10,20,30,40,50,60,70,80,90].
+
 
 Generate a number of data using `generate_data_run.py` with the command
 ```
@@ -39,12 +41,12 @@ $ make generate_data_run.sh
 
 ## Train the models
 
-Train a model using random search with the command
+Train a model using  `random_search.py` with the command
 ```
-$ make train LANGUAGE = <language> REPRESENTATION_TYPE = <representation_type> MISSING_DATA = <missing_data> TRAINING_DATA = <training_data> REPRESENTATION = <representation> TASK = <task> MODEL =  <model> 
+$ make train LANGUAGE=<language> REPRESENTATION_TYPE=<representation_type> MISSING_DATA=<missing_data> TRAINING_DATA=<training_data> REPRESENTATION=<representation> TASK=<task> MODEL=<model> 
 ```
 
-Train a number of models using `run.py`, which repetetively calls `schedule_*.sh` and runs `random_search.py`, with the command
+Train a number of models using `run.py`, which loads the configuration from `default.py`, repetetively calls `schedule_*.sh`, and runs `random_search.py`, with the command
 ```
 $ make run
 ```
