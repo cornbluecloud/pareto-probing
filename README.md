@@ -44,7 +44,7 @@ $ make generate_data.sh MULTIPICATION_FACTOR=<multiplication_factor>
 ```
 The range of "multiplcation_factor" is [0.01,0.1,1,10,100].
 
-The output data is saved in `multiplicative*`.
+The output data is saved in `multiplicative_*`.
 
 ### Generate a number of data
 Generate a number of data using `generate_data_run.py`, which loads the configuration from `default_generate.py`, iteratively writes and calls `schedule_*.sh`, and repetitively runs `random_search.py`, with the command
