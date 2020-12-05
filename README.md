@@ -44,7 +44,7 @@ $ make generate_data.sh MULTIPICATION_FACTOR=<multiplication_factor>
 ```
 The range of "multiplcation_factor" is [0.01,0.1,1,10,100].
 
-The output data is saved in `multiplicative*`.
+The output data is saved in `multiplicative_*`.
 
 ### Generate a number of data
 Generate a number of data using `generate_data_run.py`, which loads the configuration from `default_generate.py`, iteratively writes and calls `schedule_*.sh`, and repetitively runs `random_search.py`, with the command
@@ -63,6 +63,8 @@ $ make train LANGUAGE=english REPRESENTATION_TYPE=bert MISSING_DATA=<missing_dat
 ```
 There is a range of "precent_to_remove" we tried: [10,20,30,40,50,60,70,80,90].
 And the range of "missing_data": [10,20,30,40,50,60,70,80,90,100].
+Usually we take "bert" representation. Applying "vector" representation with "classify" task is to evaluate the probing task on non-semantic input.
+
 
 ### Train a number of models
 Train a number of models using `run.py`, which loads the configuration from `default.py`, iteratively writes and calls `schedule_*.sh`, and repetitively runs `random_search.py`, with the command
@@ -72,4 +74,4 @@ $ make run --config default --trainer inference --dataset dataset_new --model mo
 
 ## Analysis
 
-The results are saved in `R1_results`.
+The results are saved in `R1_results`. 
