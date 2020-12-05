@@ -17,22 +17,21 @@ $ pip install seaborn ipdb conllu
 
 ```
 
-## Download and parse universal dependencies (UD) data
+## Download universal dependencies (UD) data and preprocess (produce BERT representations)
 
 ```
 make get_ud
-make process LANGUAGE=english REPRESENTATION=onehot
-make process LANGUAGE=english REPRESENTATION=bert
+make preprocess
 ```
 
 ## Generate the data (synthetic representations)
 
-Generate data with specific parameters using `generate_missing_data.py` which removes part of embeddings of bert representetions as well as reducing the training set size with the command
+Generate data with specific parameters using `generate_missing_data.py` which removes part of embeddings of bert representetions or reduces the training set size with the command
 ```
-$ make generate_data.sh
+$ make generate_data.sh PERCNET_TO_REMOVE = <percent_to_remove> TRAINING_SIZE = <training_size>
 ```
 
-Generate a number of data using `generate_data_run.py`, which repetetively calls `schedule_*.sh` and runs `random_search.py`, with the command
+Generate a number of data using `generate_data_run.py` with the command
 ```
 $ make generate_data_run.sh
 ```
@@ -49,5 +48,4 @@ Train a number of models using `run.py`, which repetetively calls `schedule_*.sh
 ```
 $ make run
 ```
-
 
