@@ -60,6 +60,8 @@ def get_hyperparameters_search(n_runs, representation, n_classes):
         embedding_size = fast_embedding_size
     elif representation in ['bert', 'albert', 'roberta']:
         embedding_size = bert_embedding_size
+    elif representation == 'vector':
+        embedding_size = list([10])
     else:
         raise ValueError('Invalid representation %s' % representation)
 
@@ -148,9 +150,11 @@ def main():
     done_fname = os.path.join(ouput_path, 'finished.txt')
 
 
-    _, _, _, n_classes, _ = \
-        get_data_loaders(args.data_path, args.task, args.language,
-                         'onehot', 1, 1)
+    # _, _, _, n_classes, _ = \
+    #     get_data_loaders(args.data_path, args.task, args.language,
+    #                      'onehot', 1, 1)
+
+    n_classes = 2
 
     curr_iter = util.file_len(results_fname) - 1
     skip_first = False

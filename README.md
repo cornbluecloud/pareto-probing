@@ -1,72 +1,77 @@
-# pareto-probing
+# Evaluating Probes by Synthetic Representations
 
-This repository contains code accompanying the paper: "Pareto Probing: Trading Off Accuracy and Complexity" (Pimentel et al., EMNLP 2020). It is a study of probing in the context of a Pareto trade-off.
+This repository extends the code from "Pareto Probing"(Pimentel et al., EMNLP 2020). We evaluate multiple probes metrics by various synthetic representations.
 
 ## Install Dependencies
-
-Create a conda environment with
-```bash
+Create a Conda environment:
+```
 $ conda env create -f environment.yml
 ```
-Then activate the environment and install your appropriate version of [PyTorch](https://pytorch.org/get-started/locally/).
-```bash
+
+Install transformers, fastText, and other dependencies:
+```
 $ conda install -y pytorch torchvision cudatoolkit=10.1 -c pytorch
-$ # conda install pytorch torchvision cpuonly -c pytorch
-$ pip install transformers
-```
-Install the newest version of fastText:
-```bash
+$ pip install transformers==3.5.1
 $ pip install git+https://github.com/facebookresearch/fastText
+$ pip install seaborn ipdb conllu
 ```
 
-## Download and parse universal dependencies (UD) data
+## Download universal dependencies (UD) data and preprocess 
 
-You can easily download UD data with the following command
-```bash
+```
 $ make get_ud
+$ make preprocess
+```
+Save the produced BERT representations in `data/processed`.
+
+## Generate synthetic representations
+
+
+### Generate data with specific parameters
+Generate data with specific parameters using `generate_missing_data.py` which removes part of embeddings of bert representetions or reduces the training set size with the command
+```
+$ make generate_data PERCNET_TO_REMOVE=<percent_to_remove> TRAINING_SIZE=<training_size>
+```
+There is a range of "precent_to_remove" we tried: [10,20,30,40,50,60,70,80,90].
+And the range of "training_size": [10,20,30,40,50,60,70,80,90,100].
+
+The output data is saved in `B_bert_d80_d20_reduced_training_size` and `reduced_training_data`.
+
+### Generate data with multiplicative factors
+Generate data with multiplicative factors using `generate_multi.py` with the command
+```
+$ make generate_data MULTIPICATION_FACTOR=<multiplication_factor>
+```
+The range of "multiplcation_factor" is [0.01,0.1,1,10,100].
+
+The output data is saved in `multiplicative_*`.
+
+### Generate a number of data
+Generate a number of data using `generate_data_run.py`, which loads the configuration from `default_generate.py`, iteratively writes and calls `schedule_*`, and repetitively runs `random_search.py`, with the command
+```
+$ make generate_data_run --config default --trainer inference --dataset dataset_new --model model_inference --experiment 1
+```
+The output data is saved in `B_bert`.
+
+
+## Train the models
+
+### Train a model with specific parameters
+Train a model using  `random_search.py` with the command
+```
+$ make train LANGUAGE=english REPRESENTATION_TYPE=bert MISSING_DATA=<missing_data> TRAINING_DATA=<training_data> REPRESENTATION=bert TASK=pos_tag MODEL=linear
+```
+There is a range of "precent_to_remove" we tried: [10,20,30,40,50,60,70,80,90].
+And the range of "missing_data": [10,20,30,40,50,60,70,80,90,100].
+Usually we take "bert" representation. Applying "vector" representation with "classify" task is to evaluate the probing task on non-semantic input.
+
+
+### Train a number of models
+Train a number of models using `run.py`, which loads the configuration from `default.py`, iteratively writes and calls `schedule_*.sh`, and repetitively runs `random_search.py`, with the command
+```
+$ make run --config default --trainer inference --dataset dataset_new --model model_inference --experiment 1
 ```
 
-You can then get the embeddings for it with command
-```bash
-$ make process LANGUAGE=<language> REPRESENTATION=<representation>
-```
+## Analysis
 
-This repository has the option of using representations: onehot; random; bert; albert; and roberta.
-As languages, you should be able to experiment on: 'en' (english); 'cs' (czech); 'eu' (basque); 'fi' (finnish); 'tr' (turkish); 'ar' (arabic); 'ja' (japanese); 'ta' (tamil); 'ko' (korean); 'mr' (marathi); 'ur' (urdu); 'te' (telugu); 'id' (indonesian).
-If you wanna experiment on other languages, add the appropriate language code to `src/util/constants.py` and the ud path to `src/util/ud_list.py`.
-
-
-## Train your models
-
-You can train your models using random search with the command
-```bash
-$ make train LANGUAGE=<language> REPRESENTATION=<representation> TASK=<task> MODEL=<model>
-```
-There are three tasks available in this repository: pos_tag; dep_label; and parse.
-We also have three models available: 'mlp'; 'linear'; and 'max-rank'.
-
-
-## Extra Information
-
-#### Citation
-
-If this code or the paper were usefull to you, consider citing it:
-
-
-```bash
-@inproceedings{pimentel-etal-2020-pareto,
-    title = "Pareto Probing: {T}rading Off Accuracy and Complexity",
-    author = "Pimentel, Tiago and
-    Saphra, Naomi and
-    Williams, Adina and
-    Cotterell, Ryan",
-    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
-    year = "2020",
-    publisher = "Association for Computational Linguistics",
-}
-```
-
-
-#### Contact
-
-To ask questions or report problems, please open an [issue](https://github.com/rycolab/pareto-probing/issues).
+The results are saved in `R1_results`. 
